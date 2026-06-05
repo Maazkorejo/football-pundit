@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #E31837;
+  --navy: #0A1628;
+  --navy-light: #112040;
+  --navy-card: #0D1F3C;
+  --white: #FFFFFF;
+  --gray: #8899AA;
+  --gray-light: #B8C5D0;
+  --border: rgba(255,255,255,0.08);
+  --gold: #F5C518;
+}
+
+body {
+  background-color: var(--navy);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
