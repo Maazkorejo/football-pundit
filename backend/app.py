@@ -25,4 +25,5 @@ app.register_blueprint(leaderboard_bp, url_prefix='/api/leaderboard')
 if __name__ == '__main__':
     if os.environ.get('WERKZEUG_RUN_MAIN') != 'true':
         start_scheduler()
-    app.run(debug=True, use_reloader=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port, use_reloader=True)
