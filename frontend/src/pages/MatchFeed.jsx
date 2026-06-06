@@ -4,11 +4,14 @@ import { getMatches, createTake, createPrediction, createAnalysis } from '../api
 const FLAG_URL = (code) => `https://flagcdn.com/48x36/${code}.png`
 
 const TEAM_FLAGS = {
-  'Mexico': 'mx', 'Poland': 'pl', 'Argentina': 'ar', 'Iceland': 'is',
+  'Mexico': 'mx', 'Poland': 'pl', 'Argentina': 'ar', 'Chile': 'cl',
   'France': 'fr', 'Australia': 'au', 'Germany': 'de', 'Japan': 'jp',
   'Brazil': 'br', 'Serbia': 'rs', 'England': 'gb-eng', 'Iran': 'ir',
   'Portugal': 'pt', 'Ghana': 'gh', 'Spain': 'es', 'Costa Rica': 'cr',
   'USA': 'us', 'Canada': 'ca', 'Morocco': 'ma', 'Netherlands': 'nl',
+  'Ecuador': 'ec', 'Uruguay': 'uy', 'Nigeria': 'ng', 'Senegal': 'sn',
+  'Belgium': 'be', 'Croatia': 'hr', 'Colombia': 'co', 'Denmark': 'dk',
+  'Panama': 'pa', 'Peru': 'pe', 'Iceland': 'is', 'Switzerland': 'ch',
 }
 
 const statusColors = {
@@ -158,7 +161,9 @@ function MatchFeed({ userId }) {
     }).catch(() => setLoading(false))
   }, [])
 
-  const filtered = filter === 'all' ? matches : matches.filter(m => m.status === filter)
+  const filtered = filter === 'all'
+    ? matches.filter(m => m.status !== 'Finished')
+    : matches.filter(m => m.status === filter)
 
   return (
     <div style={styles.page}>

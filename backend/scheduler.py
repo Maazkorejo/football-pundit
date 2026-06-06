@@ -8,24 +8,19 @@ import time
 def process_finished_matches():
     print("Scheduler: checking matches...")
     try:
-        # Get all unprocessed matches
         matches = supabase.table('matches')\
             .select('*')\
-            .in_('status', ['Live', 'Upcoming'])\
+            .in_('status', ['Live', 'Upcoming', 'Finished'])\
             .eq('ai_processed', False)\
             .execute().data
 
         for match in matches:
             print(f"Checking match {match['id']}: {match['home_team']} vs {match['away_team']}")
 
-            # For matches we seeded manually without API IDs, skip football API call
-            # and only process if status is already 'Finished' in DB
             if match['status'] != 'Finished':
-                # Try fetching from football API
                 result = get_fixture(match['id'])
                 if not result or not result['is_finished']:
                     continue
-                # Update match result in DB
                 supabase.table('matches').update({
                     'status': 'Finished',
                     'home_score': result['home_score'],
@@ -37,7 +32,6 @@ def process_finished_matches():
                 home_score = match['home_score']
                 away_score = match['away_score']
 
-            # Score all unrated hot takes
             takes = supabase.table('hot_takes')\
                 .select('*')\
                 .eq('match_id', match['id'])\
@@ -58,7 +52,6 @@ def process_finished_matches():
                     }).eq('id', take['id']).execute()
                 time.sleep(1)
 
-            # Score all unrated analyses
             analyses = supabase.table('analyses')\
                 .select('*')\
                 .eq('match_id', match['id'])\
@@ -78,7 +71,6 @@ def process_finished_matches():
                     }).eq('id', analysis['id']).execute()
                 time.sleep(1)
 
-            # Score all predictions
             predictions = supabase.table('predictions')\
                 .select('*')\
                 .eq('match_id', match['id'])\
@@ -88,7 +80,6 @@ def process_finished_matches():
             for pred in predictions:
                 score_prediction(pred, match['home_team'], match['away_team'], home_score, away_score)
 
-            # Mark match as AI processed
             supabase.table('matches').update({
                 'ai_processed': True
             }).eq('id', match['id']).execute()
