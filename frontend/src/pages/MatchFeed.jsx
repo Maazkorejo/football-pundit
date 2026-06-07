@@ -11,7 +11,10 @@ const TEAM_FLAGS = {
   'USA': 'us', 'Canada': 'ca', 'Morocco': 'ma', 'Netherlands': 'nl',
   'Ecuador': 'ec', 'Uruguay': 'uy', 'Nigeria': 'ng', 'Senegal': 'sn',
   'Belgium': 'be', 'Croatia': 'hr', 'Colombia': 'co', 'Denmark': 'dk',
-  'Panama': 'pa', 'Peru': 'pe', 'Iceland': 'is', 'Switzerland': 'ch',
+  'Panama': 'pa', 'Switzerland': 'ch', 'Bolivia': 'bo', 'Iraq': 'iq',
+  'Ukraine': 'ua', 'Cameroon': 'cm', 'Albania': 'al', 'Jordan': 'jo',
+  'Venezuela': 've', 'Ivory Coast': 'ci', 'Saudi Arabia': 'sa',
+  'South Korea': 'kr', 'New Zealand': 'nz', 'Turkey': 'tr', 'China': 'cn',
 }
 
 const statusColors = {
