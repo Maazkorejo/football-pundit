@@ -37,7 +37,7 @@ A social football prediction platform where friends compete to be the best pundi
 2. Match ends — admin updates result in Supabase
 3. APScheduler detects the finished match every 5 minutes
 4. Flask sends each take + actual match result to Mistral AI
-5. Mistral scores it out of 10 and generates a roast if score ≤ 5
+5. Mistral scores it out of 10 and generates a roast if score is 5 or below
 6. Scores update live on the feed and leaderboard
 
 ---
@@ -52,34 +52,54 @@ All takes and analyses link to a user and a match via foreign keys. Leaderboard 
 
 ## Project Structure
 
+```
 football-pundit/
 ├── backend/
-│   ├── app.py              # Flask entry point
-│   ├── scheduler.py        # APScheduler + AI scoring pipeline
-│   ├── config.py           # Environment variables
-│   ├── routes/             # API endpoints
-│   ├── services/           # Mistral AI, Football API, scoring logic
-│   └── db/                 # Supabase client
+│   ├── app.py
+│   ├── scheduler.py
+│   ├── config.py
+│   ├── routes/
+│   │   ├── users.py
+│   │   ├── matches.py
+│   │   ├── takes.py
+│   │   ├── analyses.py
+│   │   ├── predictions.py
+│   │   └── leaderboard.py
+│   ├── services/
+│   │   ├── mistral_ai.py
+│   │   ├── football_api.py
+│   │   └── scoring.py
+│   └── db/
+│       └── supabase_client.py
 ├── frontend/
 │   └── src/
-│       ├── pages/          # Onboarding, MatchFeed, Leaderboard, Profile
-│       ├── components/     # Navbar
-│       └── api/            # Axios API calls
-└── schema.sql              # Database schema
+│       ├── pages/
+│       │   ├── Onboarding.jsx
+│       │   ├── MatchFeed.jsx
+│       │   ├── Leaderboard.jsx
+│       │   └── Profile.jsx
+│       ├── components/
+│       │   └── Navbar.jsx
+│       └── api/
+│           └── index.js
+├── schema.sql
+└── README.md
+```
 
 ---
 
 ## Running Locally
 
 **Backend:**
+
 ```bash
 cd backend
 pip install -r requirements.txt
-# Add your keys to .env
 python app.py
 ```
 
 **Frontend:**
+
 ```bash
 cd frontend
 npm install
@@ -90,15 +110,20 @@ npm run dev
 
 ## Environment Variables
 
-SUPABASE_URL=
-SUPABASE_KEY=
-MISTRAL_API_KEY=
-FOOTBALL_API_KEY=
-FLASK_SECRET_KEY=
+Create a `.env` file inside the `backend/` folder:
+
+```
+SUPABASE_URL=your_supabase_project_url
+SUPABASE_KEY=your_supabase_anon_key
+MISTRAL_API_KEY=your_mistral_api_key
+FOOTBALL_API_KEY=your_football_api_key
+FLASK_SECRET_KEY=any_random_string
+```
 
 ---
 
 ## Built By
 
-Maaz Korejo — BS Information Technology, University of Sindh, Jamshoro  
+Maaz Korejo — BS Information Technology, University of Sindh, Jamshoro
+
 [GitHub](https://github.com/Maazkorejo) · Built for FIFA World Cup 2026
