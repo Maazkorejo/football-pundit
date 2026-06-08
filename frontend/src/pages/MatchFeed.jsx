@@ -4,17 +4,20 @@ import { getMatches, createTake, createPrediction, createAnalysis } from '../api
 const FLAG_URL = (code) => `https://flagcdn.com/48x36/${code}.png`
 
 const TEAM_FLAGS = {
-  'Mexico': 'mx', 'Poland': 'pl', 'Argentina': 'ar', 'Chile': 'cl',
-  'France': 'fr', 'Australia': 'au', 'Germany': 'de', 'Japan': 'jp',
-  'Brazil': 'br', 'Serbia': 'rs', 'England': 'gb-eng', 'Iran': 'ir',
-  'Portugal': 'pt', 'Ghana': 'gh', 'Spain': 'es', 'Costa Rica': 'cr',
-  'USA': 'us', 'Canada': 'ca', 'Morocco': 'ma', 'Netherlands': 'nl',
-  'Ecuador': 'ec', 'Uruguay': 'uy', 'Nigeria': 'ng', 'Senegal': 'sn',
-  'Belgium': 'be', 'Croatia': 'hr', 'Colombia': 'co', 'Denmark': 'dk',
-  'Panama': 'pa', 'Switzerland': 'ch', 'Bolivia': 'bo', 'Iraq': 'iq',
-  'Ukraine': 'ua', 'Cameroon': 'cm', 'Albania': 'al', 'Jordan': 'jo',
-  'Venezuela': 've', 'Ivory Coast': 'ci', 'Saudi Arabia': 'sa',
-  'South Korea': 'kr', 'New Zealand': 'nz', 'Turkey': 'tr', 'China': 'cn',
+  'Mexico': 'mx', 'South Africa': 'za', 'South Korea': 'kr', 'Czechia': 'cz',
+  'Canada': 'ca', 'Bosnia and Herzegovina': 'ba', 'USA': 'us', 'Paraguay': 'py',
+  'Qatar': 'qa', 'Switzerland': 'ch', 'Brazil': 'br', 'Morocco': 'ma',
+  'Haiti': 'ht', 'Scotland': 'gb-sct', 'Australia': 'au', 'Turkey': 'tr',
+  'Germany': 'de', 'Curacao': 'cw', 'Netherlands': 'nl', 'Japan': 'jp',
+  'Ivory Coast': 'ci', 'Ecuador': 'ec', 'Tunisia': 'tn', 'Sweden': 'se',
+  'Spain': 'es', 'Cape Verde': 'cv', 'Belgium': 'be', 'Egypt': 'eg',
+  'Saudi Arabia': 'sa', 'Uruguay': 'uy', 'Iran': 'ir', 'New Zealand': 'nz',
+  'France': 'fr', 'Senegal': 'sn', 'Iraq': 'iq', 'Norway': 'no',
+  'Argentina': 'ar', 'Algeria': 'dz', 'Austria': 'at', 'Jordan': 'jo',
+  'Portugal': 'pt', 'Congo DR': 'cd', 'England': 'gb-eng', 'Croatia': 'hr',
+  'Ghana': 'gh', 'Panama': 'pa', 'Uzbekistan': 'uz', 'Colombia': 'co',
+  'Serbia': 'rs', 'Chile': 'cl', 'Denmark': 'dk', 'Nigeria': 'ng',
+  'Poland': 'pl',
 }
 
 const statusColors = {
@@ -238,9 +241,7 @@ const styles = {
     padding: '4px 10px', borderRadius: '20px',
     fontSize: '11px', fontWeight: 700, color: '#fff',
   },
-  liveDot: {
-    width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#fff',
-  },
+  liveDot: { width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#fff' },
   matchRow: {
     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
     padding: '20px 20px 16px',
